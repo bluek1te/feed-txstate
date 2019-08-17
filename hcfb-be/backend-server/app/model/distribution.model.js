@@ -7,11 +7,11 @@ module.exports = (sequelize, Sequilize) => {
             type: Sequelize.DATE
         },
         deliveryWeights : {
-            type: Sequelize.ARRAY(Sequilize.TEXT),
+            type: Sequelize.ARRAY(Sequilize.DOUBLE),
             allowNull: true,
             validate: {
                 isSpecificLength(value) {
-                    if(value.length !== 6) {
+                    if(value.length != 7) {
                         throw new Error("deliveryWeights array must have exactly 6 items.")
                     }
                 }

@@ -27,6 +27,16 @@ exports.create = (req, res) => {
     });
 };
 
+// Find a Rescue by Id
+exports.findById = (req, res) => {	
+	Rescue.findById(req.params.id).then(customer => {
+			res.json(customer);
+		}).catch(err => {
+			console.log(err);
+			res.status(500).json({msg: "error", details: err});
+		});
+};
+
 // Fetch all rescues
 exports.findAll = (req, res) => {
 	Rescue.findAll().then(rescues => {
@@ -49,3 +59,16 @@ exports.update = (req, res) => {
 				res.status(500).json({msg: "error", details: err});
 			});
 };
+
+//Delete a Rescue
+exports.delete = (req, res) => {
+	const id = req.params.id;
+	Rescue.destroy({
+			where: { id: id }
+		}).then(() => {
+			res.status(200).json( { msg: 'Deleted Successfully -> Customer Id = ' + id } );
+		}).catch(err => {
+			console.log(err);
+			res.status(500).json({msg: "error", details: err});
+        });
+    };
