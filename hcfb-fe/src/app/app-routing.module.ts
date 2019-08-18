@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { DistrictComponent } from './rescue/district/district.component';
 import { LocationComponent } from './rescue/location/location.component';
+import { DaySelectionComponent } from './distribution/day-selection/day-selection.component';
+import { SiteSelectionComponent } from './distribution/day-selection/site-selection/site-selection.component';
+import { LogComponent } from './distribution/log/log.component';
 import { TemperatureComponent } from './rescue/temperature/temperature.component';
 import { AdminMenuComponent } from './admin/admin-menu/admin-menu.component';
 import { EditPickUpRoutesComponent } from './admin/edit-pick-up-routes/edit-pick-up-routes.component';
@@ -16,6 +19,9 @@ const routes: Routes = [
   { path: 'main', component: MainComponent },
   { path: 'rescue/district', component: DistrictComponent },
   { path: 'rescue/location', component: LocationComponent },
+  { path: 'distribution/day-selection', component: DaySelectionComponent },
+  { path: 'distribution/day-selection/site-selection', component: SiteSelectionComponent },
+  { path: 'distribution/log', component: LogComponent },
   { path: 'rescue/temperature', component: TemperatureComponent },
   { path: 'admin/admin_menu', component: AdminMenuComponent },
   { path: 'admin/edit_pick_up_routes', component: EditPickUpRoutesComponent },
