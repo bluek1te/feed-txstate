@@ -19,8 +19,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         
     - name: npm install, build, and test
-      entrypoint: /hcfb-fe/
       run: |
-        npm install
-        npm run build --if-present
-        npm test
+        npm install --prefix /hcfb-fe
+        npm run build --if-present /hcfb-fe
+        npm test /hcfb-fe
