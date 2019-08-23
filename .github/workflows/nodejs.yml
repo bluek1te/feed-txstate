@@ -20,6 +20,6 @@ jobs:
         
     - name: npm install, build, and test
       run: |
-        npm install --prefix /hcfb-fe
-        npm run build --if-present /hcfb-fe
-        npm test /hcfb-fe
+        npm install --prefix /home/runner/work/feed-txstate/feed-txstate/hcfb-fe
+        npm run build --if-present --prefix /home/runner/work/feed-txstate/feed-txstate/hcfb-fe
+        npm test --prefix /home/runner/work/feed-txstate/feed-txstate/hcfb-fe
