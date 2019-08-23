@@ -18,10 +18,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: target directory
-      run: |
-        cd hcfb-fe
     - name: npm install, build, and test
       run: |
+        cd hcfb-fe
         npm install
         npm run build --if-present
         npm test
