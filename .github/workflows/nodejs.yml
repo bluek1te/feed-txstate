@@ -20,7 +20,7 @@ jobs:
     - name: target directory
     - name: npm install, build, and test
       run: |
-        cd hcfb-fe
+        shell cd hcfb-fe
         npm install
         npm run build --if-present
         npm test
