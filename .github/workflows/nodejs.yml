@@ -22,4 +22,3 @@ jobs:
       run: |
         npm install --prefix /home/runner/work/feed-txstate/feed-txstate/hcfb-fe
         npm run build --if-present --prefix /home/runner/work/feed-txstate/feed-txstate/hcfb-fe
-        npm test --prefix /home/runner/work/feed-txstate/feed-txstate/hcfb-fe
