@@ -1,24 +1,24 @@
-module.exports = (sequelize, Sequilize) => {
-    const Distribution = sequilize.define('distribution', {
+module.exports = (sequelize, Sequelize) => {
+    const Distribution = sequelize.define('distribution', {
         deliveryLocation: {
             type: Sequelize.STRING
         },
-        deliveryTime: {
+        deliveryDepartureTime: {
             type: Sequelize.DATE
         },
         deliveryWeights : {
-            type: Sequelize.ARRAY(Sequilize.DOUBLE),
+            type: Sequelize.ARRAY(Sequelize.DOUBLE),
             allowNull: true,
             validate: {
                 isSpecificLength(value) {
                     if(value.length != 7) {
-                        throw new Error("deliveryWeights array must have exactly 6 items.")
+                        throw new Error("deliveryWeights array must have exactly 7 items.")
                     }
                 }
             }
         },
         projectedNumberOfClients: {
-            type: Sequilize.INTEGER
+            type: Sequelize.INTEGER
         }
     });
     return Distribution;

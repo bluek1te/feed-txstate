@@ -29,8 +29,8 @@ exports.create = (req, res) => {
 
 // Find a Rescue by Id
 exports.findById = (req, res) => {	
-	Rescue.findById(req.params.id).then(customer => {
-			res.json(customer);
+	Rescue.findById(req.params.id).then(rescue => {
+			res.json(rescue);
 		}).catch(err => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});
