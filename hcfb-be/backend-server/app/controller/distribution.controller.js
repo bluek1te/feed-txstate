@@ -18,7 +18,7 @@ exports.create = (req, res) => {
 
 // Find a the most recent distribution
 exports.findByLocation = (req, res) => {	
-    Distribution.findOne(
+    Distribution.findAll(
         { where: {deliveryLocation: req.params.deliveryLocation} }).then(distribution => {
 			res.json(distribution);
 		}).catch(err => {
@@ -42,16 +42,11 @@ exports.findAll = (req, res) => {
 exports.update = (req, res) => {
     const Op = db.Sequelize.Op;
     const devLoc = req.body.deliveryLocation;
-    var date = req.body.deliveryDepartureTime;
-    var devDepTime= new Sql("WHERE date_created = @0::timestamp", date.ToString("yyyy-MM-dd HH:00:00"));
+    var date = new Date(req.body.deliveryDepartureTime);
     Distribution.update( req.body, 
 			{ where: {
-                deliveryLocation: { 
-                        [Op.like]:  devLoc 
-                },
-                deliveryDepartureTime: {
-                        [Op.like]: devDepTime
-                }
+                deliveryLocation: devLoc,
+                deliveryDepartureTime: date
             }
              }).then(() => {
 				res.status(200).json( { mgs: "Updated Successfully"} );
@@ -63,9 +58,14 @@ exports.update = (req, res) => {
 
 //Delete a Distrbution
 exports.delete = (req, res) => {
-	const id = req.params.id;
+    const id = req.params.id;
+    const devLoc = req.body.deliveryLocation;
+    var date = new Date(req.body.deliveryDepartureTime);
 	Distribution.destroy({
-			where: { id: id }
+			where: { 
+                deliveryLocation: devLoc,
+                deliveryDepartureTime: date
+             }
 		}).then(() => {
 			res.status(200).json( { msg: 'Deleted Successfully -> Customer Id = ' + id } );
 		}).catch(err => {
