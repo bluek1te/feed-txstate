@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequilize) => {
             validate: {
                 isSpecificLength(value) {
                     if(value.length !== 6) {
-                        throw new Error("deliveryWeights array must have exactly 6 items.")
+                        throw new Error("deliveryWeights array must have exactly 6 items.BAD ERROR")
                     }
                 }
             }
