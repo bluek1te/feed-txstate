@@ -31,7 +31,7 @@ exports.findByLocation = (req, res) => {
 exports.findAll = (req, res) => {
 	Distribution.findAll().then(distributions => {
 			// Send All Distributions to Client
-			res.json(distributions.sort(function(c1, c2){return c1.id - c2.id}));
+			res.json(distributions.sort((c1, c2) => c1.id - c2.id));
 		}).catch(err => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});
