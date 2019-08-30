@@ -2,7 +2,7 @@ const db = require('../config/db.config.js');
 const Distribution = db.distributions;
 
 exports.create = (req, res) => {
-    //Save to postgre database
+    //Save to postgresql database
     Distribution.create({
       "deliveryLocation" : req.body.deliveryLocation,
       "deliveryDepartureTime" : req.body.deliveryDepartureTime,
