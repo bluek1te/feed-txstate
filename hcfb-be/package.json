@@ -13,5 +13,8 @@
     "express-graphql": "^0.7.1",
     "graphql": "^14.1.1",
     "graphql-tools": "^4.0.4"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2"
   }
 }
