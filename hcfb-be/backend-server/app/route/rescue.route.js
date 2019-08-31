@@ -4,6 +4,9 @@ module.exports = function(app) {
     //Create a new Rescue
     app.post('/api/rescues', rescues.create);
 
+    // Retrieve a single Customer by Id
+    app.get('/api/rescues/:id', rescues.findById);
+
     //Get all rescues
     app.get('/api/rescues', rescues.findAll);
 
