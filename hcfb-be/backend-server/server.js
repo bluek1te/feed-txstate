@@ -23,6 +23,7 @@ db.sequelize.sync({force: true}).then(() => {
  
 require('./app/route/customer.route.js')(app);
 require('./app/route/rescue.route.js')(app);
+require('./app/route/distribution.route.js')(app);
  
 // Create a Server
 var server = app.listen(8080, function () {
@@ -108,6 +109,20 @@ function initial(){
       last_updated_by: "Jerry"
     }
   ]
+  let distributions = [
+    {
+      deliveryLocation : "402 North Fredericksburg St, San Marcos, TX 78676",
+      deliveryDepartureTime : new Date(),
+      deliveryWeights: [30, 34, 65, 0 , 23, 45, 76],
+      projectedNumberOfClients : 483
+    },
+    {
+      deliveryLocation : "1623 Treasure Folks Drive, San Marcos, TX 78666",
+      deliveryDepartureTime : new Date(),
+      deliveryWeights: [36, 34, 30, 55 , 55, 45, 76],
+      projectedNumberOfClients : 567
+    }
+  ]
  
   // // Init data -> save to MySQL
   // const Customer = db.customers;
@@ -116,7 +131,10 @@ function initial(){
   // }
 
   const Rescue = db.rescues;
-  for(let i = 0; i < rescues.length; i++){
+  const Distribution = db.distributions;
+  for(let i = 0; i < rescues.length; i++)
     Rescue.create(rescues[i]);
-  }
+  
+  for(let i = 0; i < distributions.length; i++)
+    Distribution.create(distributions[i]);
 }
