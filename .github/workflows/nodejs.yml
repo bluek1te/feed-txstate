@@ -13,10 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}    
+        node-version: ${{ matrix.node-version }}
     - name: angular npm install and build
       run: |
         npm install --prefix /home/runner/work/feed-txstate/feed-txstate/hcfb-fe
