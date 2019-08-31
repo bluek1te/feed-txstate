@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Rescue } from './Rescue';
+import { Rescue } from './rescue';
 import { Subscription } from 'rxjs/Subscription';
 import { RescueService } from './rescue.service';
 import { Router } from '@angular/router';
