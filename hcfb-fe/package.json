@@ -6,8 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint && prettier --check **.js",
-    "format": "prettier --write **.js",
+    "lint": "ng lint && prettier --check src/**/*.{ts,js} e2e/**/*.{ts,js}",
+    "format": "prettier --write src/**/*.{ts,js} e2e/**/*.{ts,js}",
     "e2e": "ng e2e"
   },
   "private": true,
