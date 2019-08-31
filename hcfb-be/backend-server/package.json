@@ -17,5 +17,8 @@
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.37.6"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2"
   }
 }
