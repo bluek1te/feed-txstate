@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { EditPickUpRoutesComponent } from './edit-pick-up-routes.component';
+import { EditPickUpRoutesComponent } from "./edit-pick-up-routes.component";
 
-describe('EditPickUpRoutesComponent', () => {
+describe("EditPickUpRoutesComponent", () => {
   let component: EditPickUpRoutesComponent;
   let fixture: ComponentFixture<EditPickUpRoutesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditPickUpRoutesComponent ]
-    })
-    .compileComponents();
+      declarations: [EditPickUpRoutesComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('EditPickUpRoutesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
