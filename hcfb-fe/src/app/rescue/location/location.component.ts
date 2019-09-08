@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { RescueService } from "../rescue.service";
 import { Rescue } from "../rescue";
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./location.component.scss']
 })
 export class LocationComponent implements OnInit {
-
+  public data: Rescue[];
   rescue: Rescue;
   
   constructor(private rescueSource: RescueService, private router: Router) { }

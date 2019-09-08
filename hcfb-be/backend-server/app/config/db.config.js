@@ -21,6 +21,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 //Models/tables
+db.carts = require('../model/carts.model')(sequelize, Sequelize);
 db.customers = require('../model/customer.model.js')(sequelize, Sequelize);
 db.rescues = require('../model/rescue.model.js')(sequelize, Sequelize);
 db.distributions = require('../model/distribution.model.js')(sequelize, Sequelize);

@@ -2,7 +2,7 @@
    <h2>Food Rescue</h2>
 </div>
 <div class="d-flex justify-content-center" style="margin-bottom: 2em;">
-   <h3>{{rescue.location}}</h3>
+   <h3>{{resc.location}}</h3>
 </div>
 <div class="d-flex justify-content-center border-bottom">
    <div class="p-2 bd-highlight rescue-form">
@@ -12,9 +12,11 @@
       <form>
          <div class="form-group">
             <label for="initialMeatTemp">Meat Temp.</label>
-            <input type="number" class="form-control" id="initialMeatTemp">
+            <input  type="number" class="form-control" [value]="resc.meat_temp_pick_up" (input)="resc.meat_temp_pick_up = $event.target.value">
+            <p>{{ resc.meat_temp_pick_up }}</p>
             <label for="initialProduceTemp">Produce Temp.</label>
-            <input type="number" class="form-control" id="initialProduceTemp">
+            <input type="number" class="form-control" id="initialProduceTemp" [value]="resc.produce_temp_pick_up" (input)="resc.produce_temp_pick_up = $event.target.value">
+            <p>{{ resc.produce_temp_pick_up}}</p>
          </div>
       </form>
    </div>
@@ -27,12 +29,12 @@
       <form>
          <div class="form-group">
             <label for="initialMeatTemp">Meat Temp.</label>
-            <input type="number" class="form-control" id="initialMeatTemp">
+            <input type="number" class="form-control" id="initialProduceTemp" [value]="resc.meat_temp_drop_off" (input)="resc.meat_temp_drop_off = $event.target.value">
             <label for="initialProduceTemp">Produce Temp.</label>
-            <input type="number" class="form-control" id="initialProduceTemp">
+            <input type="number" class="form-control" id="initialProduceTemp" [value]="resc.produce_temp_drop_off" (input)="resc.produce_temp_drop_off = $event.target.value">
          </div>
       </form>
-      <button class="getRescue" (click) = "getLocation()">location</button>
-      <div> {{data.location}}</div>
+      <button class="navToReview" (click) = "navigateToReview()"> submit</button>
+      <div> </div>
    </div>
 </div>

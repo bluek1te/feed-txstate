@@ -35,10 +35,6 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: true,
             type: Sequelize.DATE
         },
-        updated_at: {
-            allowNull: true,
-            type: Sequelize.DATE
-        },
         last_updated_by: {
             allowNull: true,
             type: Sequelize.STRING

@@ -8,18 +8,19 @@ import "rxjs/add/operator/catch";
 
 
 import { Rescue } from './rescue';
+import { AppGlobal } from '../app.global'
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RescueService {
-  private rescueSource = new BehaviorSubject<Rescue>({
-	location: "empty",
+    private rescueSource = new BehaviorSubject<Rescue>({
+    location: "empty",
   });
 
   currentRescue = this.rescueSource.asObservable();
-  constructor(private http: HttpClient ) { }
+  constructor(private http: HttpClient, private appGlobal: AppGlobal ) { }
   options = {headers : {'Content-Type' : 'application/json'}};
 
   private static _handleError(err: HttpErrorResponse | any) {
@@ -32,8 +33,13 @@ export class RescueService {
 
   getRescueLocation(): Observable<any> {
     return this.http
-    .get("http://localhost:8080/api/rescues/1")
-    .catch(RescueService._handleError);
+           .get(this.appGlobal.baseAppUrl + this.appGlobal.basePort + "/api/rescues/1")
+           .catch(RescueService._handleError);
   }
-
+  
+  submitForm(rescue: Rescue) : Observable<any> {
+    return this.http
+           .post(this.appGlobal.baseAppUrl + this.appGlobal.basePort + "/api/rescues", rescue)
+           .catch(RescueService._handleError);
+  }
 }

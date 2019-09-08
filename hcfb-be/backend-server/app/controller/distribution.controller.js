@@ -16,7 +16,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Find a the most recent distribution
+// Find the most recent distribution
 exports.findByLocation = (req, res) => {	
     Distribution.findAll(
         { where: {deliveryLocation: req.params.deliveryLocation} }).then(distribution => {
@@ -40,7 +40,6 @@ exports.findAll = (req, res) => {
 
 // Update a Distribution
 exports.update = (req, res) => {
-    const Op = db.Sequelize.Op;
     const devLoc = req.body.deliveryLocation;
     var date = new Date(req.body.deliveryDepartureTime);
     Distribution.update( req.body, 
@@ -67,7 +66,7 @@ exports.delete = (req, res) => {
                 deliveryDepartureTime: date
              }
 		}).then(() => {
-			res.status(200).json( { msg: 'Deleted Successfully -> Customer Id = ' + id } );
+			res.status(200).json( { msg: 'Deleted Successfully -> Distribution ID = ' + id } );
 		}).catch(err => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});

@@ -20,7 +20,7 @@ db.sequelize.sync({force: true}).then(() => {
   console.log('Drop and Resync with { force: true }');
   initial();
 });
- 
+
 require('./app/route/customer.route.js')(app);
 require('./app/route/rescue.route.js')(app);
 require('./app/route/distribution.route.js')(app);
@@ -36,43 +36,6 @@ var server = app.listen(8080, function () {
  
 function initial(){
  
-  // let customers = [
-  //   {
-  //     firstname: "Joe",
-  //     lastname: "Thomas",
-  //     age: 36
-  //   },
-  //   {
-  //     firstname: "Peter",
-  //     lastname: "Smith",
-  //     age: 18
-  //   },
-  //   {
-  //     firstname: "Lauren",
-  //     lastname: "Taylor",
-  //     age: 31
-  //   },
-  //   {
-  //     firstname: "Mary",
-  //     lastname: "Taylor",
-  //     age: 24
-  //   },
-  //   {
-  //     firstname: "David",
-  //     lastname: "Moore",
-  //     age: 25
-  //   },
-  //   {
-  //     firstname: "Holly",
-  //     lastname: "Davies",
-  //     age: 27
-  //   },
-  //   {
-  //     firstname: "Michael",
-  //     lastname: "Brown",
-  //     age: 45
-  //   }
-  // ]
   let rescues = [
     {
       store_name: "HEB",
@@ -125,11 +88,6 @@ function initial(){
   ]
  
   // // Init data -> save to MySQL
-  // const Customer = db.customers;
-  // for (let i = 0; i < customers.length; i++) { 
-  //   Customer.create(customers[i]);  
-  // }
-
   const Rescue = db.rescues;
   const Distribution = db.distributions;
   for(let i = 0; i < rescues.length; i++)

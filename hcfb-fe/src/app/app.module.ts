@@ -23,6 +23,8 @@ import { WarehouseSelectionComponent } from './warehouse/route-selection/warehou
 import { LocationSelectionComponent } from './warehouse/route-selection/location-selection/location-selection.component';
 import { WeightEntryComponent } from './warehouse/weight-entry/weight-entry.component';
 import { WeightEntryReviewComponent } from './warehouse/weight-entry-review/weight-entry-review.component';
+import { ReviewComponent } from './rescue/review/review.component';
+import { AppGlobal } from './app.global';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { WeightEntryReviewComponent } from './warehouse/weight-entry-review/weig
     LocationSelectionComponent,
     WeightEntryComponent,
     WeightEntryReviewComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,7 @@ import { WeightEntryReviewComponent } from './warehouse/weight-entry-review/weig
     FormsModule, 
     HttpClientModule, 
   ],
-  providers: [],
+  providers: [ AppGlobal ],
   bootstrap: [AppComponent]
 })
 

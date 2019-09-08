@@ -10,16 +10,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./temperature.component.scss']
 })
 export class TemperatureComponent implements OnInit {
-
-  constructor(private rescueService: RescueService, private router: Router) { 
+  message : String;
+  constructor(private rescueSource: RescueService, private router: Router) { 
     
   }
 
   ngOnInit() {
-     this.rescueService.currentRescue.subscribe(rescue => this.rescue = rescue)
+     this.rescueSource.currentRescue.subscribe(rescue => this.resc = rescue)
+     this.message = 'boot';
   }
   
-  rescue: Rescue;
+  resc: Rescue;
   rescueSub: Subscription;
   test : Date;
   data : Rescue = {};
@@ -28,17 +29,16 @@ export class TemperatureComponent implements OnInit {
       store_number: "121234321",
       district: "Buda",
       location: "2442 developer lane",
-      meat_temp_pick_up: "",
-      meat_temp_drop_off: "",
-      produce_temp_pick_up:"",
-      produce_temp_drop_off:"",
-      created_at: this.test,
-      updated_at: this.test,
+      meat_temp_pick_up: 34,
+      meat_temp_drop_off: 45,
+      produce_temp_pick_up: 35,
+      produce_temp_drop_off: 37,
+      time_pick_up: this.test,
       last_updated_by: " "
   }
 
   getLocation(): void {
-       this.rescueSub = this.rescueService
+       this.rescueSub = this.rescueSource
           .getRescueLocation()
           .subscribe( res => {
               this.data = res;
@@ -46,13 +46,23 @@ export class TemperatureComponent implements OnInit {
           },
               console.error,
               () => {console.log("NOT AS INTENDED");
-          }
-                
-          );
+          });
       
   }
-  updateRescue(event: any){
-      this.newRescue.store_name = event.target.value;
+
+  navigateToReview(){
+    this.rescueSource.changeRescue(this.resc);
+    this.router.navigateByUrl('/rescue/review');
+  }
+
+  submitReviewPage(){
+    this.rescueSub = this.rescueSource.submitForm(this.resc)
+      .subscribe( res => { this.data = res;
+      console.log("posted");
+  },
+      console.error,
+      () => { console.log("failed to post.")
+    });
   }
 
   ngOnDestroy() {

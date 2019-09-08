@@ -1,0 +1,46 @@
+<div class="container">
+  <h2 class="reviewPage">Review Temperatures</h2>
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th>Location</th>
+        <th>At Pick Up</th>
+        <th>At Drop Off</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{rescue.location}}</td>
+        <td>{{rescue.meat_temp_pick_up}}</td>
+        <td>{{rescue.produce_temp_pick_up}}</td>
+        <td>{{rescue.meat_temp_drop_off}}</td>
+        <td>{{rescue.produce_temp_drop_off}}</td>
+        <td><button type="button" class="btn btn-primary btn-rescue">Edit</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Prepopulate rescue Location 2</td>
+        <td>Prepopulate temperature at Pick Up by location 2</td>
+        <td>Prepopulate temperature at Drop Off by location 2</td>
+        <td><button type="button" class="btn btn-primary btn-rescue">Edit</button>
+        </td>
+      </tr>
+      <tr>
+          <td>Prepopulate rescue Location 3</td>
+          <td>Prepopulate temperature at Pick Up by location 3</td>
+          <td>Prepopulate temperature at Drop Off by location 3</td>
+          <td><button type="button" class="btn btn-primary btn-rescue">Edit</button>
+      </tr>
+      <tr>
+          <td>Prepopulate rescue Location 4</td>
+          <td>Prepopulate temperature at Pick Up by location 4</td>
+          <td>Prepopulate temperature at Drop Off by location 4</td>
+          <td><button type="button" class="btn btn-primary btn-rescue">Edit</button>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+ <div class="wrapper">
+   <button type="button" class="btn btn-primary btn-rescue" style="width: 200px;" (click) = "submitReviewPage()">Submit</button>
+   <p> check {{rescue.location}}</p>
+</div>

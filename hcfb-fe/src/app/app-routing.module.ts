@@ -10,6 +10,7 @@ import { ShowAllRoutesComponent } from './admin/edit-pick-up-routes/show-all-rou
 import { RouteSelectionComponent } from './warehouse/route-selection/route-selection.component';
 import { LocationSelectionComponent } from './warehouse/route-selection/location-selection/location-selection.component';
 import { WeightEntryComponent } from './warehouse/weight-entry/weight-entry.component';
+import { ReviewComponent } from './rescue/review/review.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'rescue/district', component: DistrictComponent },
   { path: 'rescue/location', component: LocationComponent },
   { path: 'rescue/temperature', component: TemperatureComponent },
+  { path: 'rescue/review', component: ReviewComponent},
   { path: 'admin/admin_menu', component: AdminMenuComponent },
   { path: 'admin/edit_pick_up_routes', component: EditPickUpRoutesComponent },
   { path: 'admin/edit_pick_up_routes/show_all_routes', component: ShowAllRoutesComponent },
