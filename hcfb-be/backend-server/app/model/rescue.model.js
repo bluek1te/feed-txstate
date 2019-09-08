@@ -15,23 +15,19 @@ module.exports = (sequelize, Sequelize) => {
     location: {
       type: Sequelize.STRING,
     },
-    meat_temp_pick_up: {
-      allowNull: true,
-      type: Sequelize.STRING,
+    date: {
+      allowNull: false,
+      type: Sequelize.DATE,
     },
-    meat_temp_drop_off: {
-      allowNull: true,
-      type: Sequelize.STRING,
-    },
-    produce_temp_pick_up: {
-      allowNull: true,
-      type: Sequelize.STRING,
-    },
-    produce_temp_drop_off: {
-      allowNull: true,
+    food_name: {
+      allowNull: false,
       type: Sequelize.STRING,
     },
     time_pick_up: {
+      allowNull: true,
+      type: Sequelize.DATE,
+    },
+    time_drop_off: {
       allowNull: true,
       type: Sequelize.DATE,
     },

@@ -1,9 +1,13 @@
 module.exports = (sequelize, Sequelize) => {
-  const Location_user_day = sequelize.define("location_user_day", {
-    location_name: {},
-    user: {
-      type: Sequilize.INTEGER,
-      references: "user",
+  const Location = sequelize.define("location", {
+    location_name: {
+      allowNull: false,
+      type: Sequelize.STRING,
     },
+    address: {
+      allowNull: false,
+      type: Sequelize.STRING,
+    }
   });
+  return Location;
 };
