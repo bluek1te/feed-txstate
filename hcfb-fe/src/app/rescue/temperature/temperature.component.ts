@@ -9,15 +9,7 @@ import { Router } from "@angular/router";
   templateUrl: "./temperature.component.html",
   styleUrls: ["./temperature.component.scss"],
 })
-export class TemperatureComponent implements OnInit {
-  constructor(private rescueService: RescueService, private router: Router) {}
-
-  ngOnInit() {
-    this.rescueService.currentRescue.subscribe(
-      rescue => (this.rescue = rescue)
-    );
-  }
-
+export class TemperatureComponent implements OnInit, OnDestroy {
   rescue: Rescue;
   rescueSub: Subscription;
   test: Date;
@@ -36,6 +28,14 @@ export class TemperatureComponent implements OnInit {
     last_updated_by: " ",
   };
 
+  constructor(private rescueService: RescueService, private router: Router) {}
+
+  ngOnInit() {
+    this.rescueService.currentRescue.subscribe(
+      rescue => (this.rescue = rescue)
+    );
+  }
+
   getLocation(): void {
     this.rescueSub = this.rescueService.getRescueLocation().subscribe(
       res => {
@@ -53,6 +53,6 @@ export class TemperatureComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    //this.rescueSub.unsubscribe();
+    // this.rescueSub.unsubscribe();
   }
 }
