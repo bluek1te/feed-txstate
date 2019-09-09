@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ViewDailyDistributionComponent } from './view-daily-distribution.component';
+import { ViewDailyDistributionComponent } from "./view-daily-distribution.component";
 
-describe('ViewDailyDistributionComponent', () => {
+describe("ViewDailyDistributionComponent", () => {
   let component: ViewDailyDistributionComponent;
   let fixture: ComponentFixture<ViewDailyDistributionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewDailyDistributionComponent ]
-    })
-    .compileComponents();
+      declarations: [ViewDailyDistributionComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('ViewDailyDistributionComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
