@@ -2,6 +2,7 @@ ECHO OFF
 ECHO "Set Database Configuration"
 
 SET /P databaseMode= Connect to local database or production database? input: (local or production)
+SET ERR_CHECK="true"
 
 IF "%databaseMode%"=="local" (
 	SET ERR_CHECK="false"
