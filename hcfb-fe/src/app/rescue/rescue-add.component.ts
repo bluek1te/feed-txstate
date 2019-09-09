@@ -8,10 +8,9 @@ import { Router } from "@angular/router";
   selector: "app-rescue-add",
   templateUrl: "./rescue-add.component.ts",
 })
-export class RescueAddComponenet implements OnInit {
+export class RescueAddComponent implements OnInit {
   rescueSub: Subscription;
   test: Date;
-  ngOnInit() {}
   data: Rescue = {};
   newRescue: Rescue = {
     store_name: "testHEB",
@@ -26,6 +25,8 @@ export class RescueAddComponenet implements OnInit {
     updated_at: this.test,
     last_updated_by: " ",
   };
+
+  ngOnInit() {}
 
   constructor(private rescueService: RescueService, private router: Router) {}
 
