@@ -8,8 +8,8 @@ if [ $databaseMode = "local" ]
 then
         echo Local Database Selected
         echo Creating env.js file...
-        rm -f app/config/env.js
-        touch app/config/env.js
+        rm -f ../app/config/env.js
+        touch ../app/config/env.js
         echo "const env = {
                 database: 'test',
                 username: 'postgres',
@@ -23,7 +23,7 @@ then
                         idle: 10000
                       }
                };
-	       module.exports = env" >> app/config/env.js
+	       module.exports = env" >> ../app/config/env.js
         echo "Local env.js config created, database: 'test', username: 'postgres', password: 'mysql'"
 	exit 0
 fi
@@ -40,8 +40,8 @@ then
 	echo Password?
 	read password
         echo Creating env.js file...
-        rm -f app/config/env.js
-        touch app/config/env.js
+        rm -f ../app/config/env.js
+        touch ../app/config/env.js
         echo "const env = {
                 database: '$database',
                 username: '$username',
@@ -55,7 +55,7 @@ then
                         idle: 10000
                       }
                };
-	       module.exports = env" >> app/config/env.js
+	       module.exports = env" >> ../app/config/env.js
         echo "Production env.js created"
 	exit 0
 fi
