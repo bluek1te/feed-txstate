@@ -30,7 +30,7 @@ fi
 
 if [ $databaseMode = "production" ]
 then
-        echo Production Database Selected
+    echo Production Database Selected
 	echo Database?
 	read database
 	echo Host?
