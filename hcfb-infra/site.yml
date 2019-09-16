@@ -53,10 +53,12 @@
       system: yes
 
   - name: sudoers file
-    copy:
-      src: sudoers.conf
+    template:
+      src: sudoers.conf.j2
       dest: /etc/sudoers.d/00-feed.conf
+      mode: 0440
       validate: /usr/sbin/visudo -cf %s
+    register: sudoers
 
   # Platform
   - name: apt dependencies
@@ -113,8 +115,8 @@
       version: master
 
   - name: npm configuration
-    copy:
-      src: npmrc
+    template:
+      src: npmrc.j2
       dest: "{{ app_root }}/{{ item }}/.npmrc"
     loop:
     - hcfb-be
