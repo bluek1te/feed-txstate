@@ -4,5 +4,4 @@ INFRA_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 exec ansible-playbook \
   --inventory "${INFRA_DIR}/inventory.yml" \
-  --ask-become-pass \
   "${INFRA_DIR}/site.yml"
