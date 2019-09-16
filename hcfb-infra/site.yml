@@ -129,10 +129,3 @@
     loop:
     - hcfb-be
     - hcfb-fe
-
-  # Frontend
-
-  - name: build frontend
-    command: npm run build
-    args:
-      chdir: "{{ app_root }}/hcfb-fe"
