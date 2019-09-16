@@ -1,0 +1,138 @@
+---
+- hosts: production
+  become: yes
+  vars_files:
+  - vars.yml
+  tasks:
+
+  # Accounts
+  - name: create administrator user groups
+    group:
+      name: "{{ item }}"
+      state: present
+    loop:
+    - feedadmin
+    - ultrasudo
+
+  - name: create administrator user accounts
+    user:
+      name: "{{ item }}"
+      state: present
+      groups: feedadmin, ultrasudo
+      password_lock: yes
+    loop: "{{ usernames }}"
+
+  - name: install user account SSH keys
+    authorized_key:
+      user: "{{ item }}"
+      key: https://github.com/{{ item }}.keys
+      state: present
+    loop: "{{ usernames }}"
+
+  - name: deployment user account
+    user:
+      name: deploy
+      groups: ultrasudo
+      state: present
+      shell: /bin/false
+      password_lock: yes
+
+  - name: deployment key
+    authorized_key:
+      user: deploy
+      key: "{{ deploy_pubkey }}"
+      state: present
+
+  - name: system user account
+    user:
+      name: feed
+      state: present
+      shell: /bin/false
+      create_home: no
+      password_lock: yes
+      system: yes
+
+  - name: sudoers file
+    copy:
+      src: sudoers.conf
+      dest: /etc/sudoers.d/00-feed.conf
+      validate: /usr/sbin/visudo -cf %s
+
+  # Platform
+  - name: apt dependencies
+    apt:
+      name: apt-transport-https
+      state: present
+
+  - name: apt key for Node.js distribution
+    apt_key:
+      url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+      state: present
+
+  - name: apt sources list for Node.js distribution
+    apt_repository:
+      repo: deb https://deb.nodesource.com/node_12.x bionic main
+      filename: nodesource
+      state: present
+    register: nodejs_source
+
+  - name: apt cache up to date
+    apt:
+      update_cache: yes
+      cache_valid_time: "{{ nodejs_source.changed |ternary(3600, 0) }}"
+
+  - name: apt software
+    apt:
+      name: "{{ item }}"
+      state: present
+    loop:
+    - nodejs
+    - nginx
+
+  - name: source directory
+    file:
+      path: "{{ app_root }}"
+      state: directory
+      owner: feed
+      group: feedadmin
+      mode: 0750
+
+- hosts: production
+  vars_files:
+    - vars.yml
+  become: yes
+  become_user: feed
+  tasks:
+
+  # Fetch latest source
+
+  - name: hcfb source
+    git:
+      repo: https://github.com/bluek1te/feed-txstate.git
+      dest: "{{ app_root }}"
+      version: master
+
+  - name: npm configuration
+    copy:
+      src: npmrc
+      dest: "{{ app_root }}/{{ item }}/.npmrc"
+    loop:
+    - hcfb-be
+    - hcfb-fe
+
+  - name: install npm dependencies
+    npm:
+      path: "{{ app_root }}/{{ item }}"
+      state: present
+      production: yes
+      ci: yes
+    loop:
+    - hcfb-be
+    - hcfb-fe
+
+  # Frontend
+
+  - name: build frontend
+    command: npm run build
+    args:
+      chdir: "{{ app_root }}/hcfb-fe"
