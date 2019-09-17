@@ -1,10 +1,12 @@
 h2 {
 	font-family: "Open Sans", serif;
+	color: white
 }
 
 h3 {
 	font-family: "Open Sans", serif;
 	font-size: 1.7em;
+	color: white
 }
 
 .btn-rescue{
@@ -14,6 +16,14 @@ h3 {
 	width: 40rem;
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
+}
+
+.btn-primary {
+	background-color: #5BC057
+}
+
+.btn-secondary {
+	background-color: #7DB1B1
 }
 
 .rescue-form{
@@ -31,4 +41,5 @@ input {
 label {
 	font-family: "Open Sans", serif;
 	font-size: 2em;
+	color: white
 }
