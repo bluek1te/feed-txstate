@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DownloadDataComponent } from './download-data.component';
+import { DownloadDataComponent } from "./download-data.component";
 
-describe('DownloadDataComponent', () => {
+describe("DownloadDataComponent", () => {
   let component: DownloadDataComponent;
   let fixture: ComponentFixture<DownloadDataComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DownloadDataComponent ]
-    })
-    .compileComponents();
+      declarations: [DownloadDataComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('DownloadDataComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { WeightEntryComponent } from './weight-entry.component';
+import { WeightEntryComponent } from "./weight-entry.component";
 
-describe('WeightEntryComponent', () => {
+describe("WeightEntryComponent", () => {
   let component: WeightEntryComponent;
   let fixture: ComponentFixture<WeightEntryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WeightEntryComponent ]
-    })
-    .compileComponents();
+      declarations: [WeightEntryComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('WeightEntryComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

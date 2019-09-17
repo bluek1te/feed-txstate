@@ -1,27 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { RescueService } from "../rescue.service";
 import { Rescue } from "../rescue";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-location',
-  templateUrl: './location.component.html',
-  styleUrls: ['./location.component.scss']
+  selector: "app-location",
+  templateUrl: "./location.component.html",
+  styleUrls: ["./location.component.scss"],
 })
 export class LocationComponent implements OnInit {
-
   rescue: Rescue;
-  
-  constructor(private rescueSource: RescueService, private router: Router) { }
+
+  constructor(private rescueSource: RescueService, private router: Router) {}
 
   ngOnInit() {
-     this.rescueSource.currentRescue.subscribe(rescue => this.rescue = rescue)
+    this.rescueSource.currentRescue.subscribe(rescue => (this.rescue = rescue));
   }
 
   newLocation(location: string) {
-     this.rescue.location = location;
-     this.rescueSource.changeRescue(this.rescue);
-     this.router.navigateByUrl('/rescue/temperature');
+    this.rescue.location = location;
+    this.rescueSource.changeRescue(this.rescue);
+    this.router.navigateByUrl("/rescue/temperature");
   }
-
 }
