@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DistrictComponent } from './district.component';
+import { DistrictComponent } from "./district.component";
 
-describe('DistrictComponent', () => {
+describe("DistrictComponent", () => {
   let component: DistrictComponent;
   let fixture: ComponentFixture<DistrictComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DistrictComponent ]
-    })
-    .compileComponents();
+      declarations: [DistrictComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('DistrictComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

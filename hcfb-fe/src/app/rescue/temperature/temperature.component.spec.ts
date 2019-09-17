@@ -1,18 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Rescue } from '../Rescue';
-import { Subscription } from 'rxjs/Subscription';
-import { RescueService } from '../rescue.service';
-import { TemperatureComponent } from './temperature.component';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { Rescue } from "../Rescue";
+import { Subscription } from "rxjs/Subscription";
+import { RescueService } from "../rescue.service";
+import { TemperatureComponent } from "./temperature.component";
 
-describe('TemperatureComponent', () => {
+describe("TemperatureComponent", () => {
   let component: TemperatureComponent;
   let fixture: ComponentFixture<TemperatureComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TemperatureComponent ]
-    })
-    .compileComponents();
+      declarations: [TemperatureComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,7 +20,7 @@ describe('TemperatureComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
