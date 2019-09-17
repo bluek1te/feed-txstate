@@ -1,17 +1,16 @@
-import 'jasmine';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import "jasmine";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SiteSelectionComponent } from './site-selection.component';
+import { SiteSelectionComponent } from "./site-selection.component";
 
-describe('SiteSelectionComponent', () => {
+describe("SiteSelectionComponent", () => {
   let component: SiteSelectionComponent;
   let fixture: ComponentFixture<SiteSelectionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SiteSelectionComponent ]
-    })
-    .compileComponents();
+      declarations: [SiteSelectionComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -20,7 +19,7 @@ describe('SiteSelectionComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -10,9 +10,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { MainComponent } from "./main/main.component";
 import { DistrictComponent } from "./rescue/district/district.component";
 import { LocationComponent } from "./rescue/location/location.component";
-import { DaySelectionComponent } from './distribution/day-selection/day-selection.component';
-import { SiteSelectionComponent } from './distribution/day-selection/site-selection/site-selection.component';
-import { LogComponent } from './distribution/log/log.component';
+import { DaySelectionComponent } from "./distribution/day-selection/day-selection.component";
+import { SiteSelectionComponent } from "./distribution/day-selection/site-selection/site-selection.component";
+import { LogComponent } from "./distribution/log/log.component";
 import { TemperatureComponent } from "./rescue/temperature/temperature.component";
 import { AdminMenuComponent } from "./admin/admin-menu/admin-menu.component";
 import { EditPickUpRoutesComponent } from "./admin/edit-pick-up-routes/edit-pick-up-routes.component";
@@ -26,7 +26,7 @@ import { WarehouseSelectionComponent } from "./warehouse/route-selection/warehou
 import { LocationSelectionComponent } from "./warehouse/route-selection/location-selection/location-selection.component";
 import { WeightEntryComponent } from "./warehouse/weight-entry/weight-entry.component";
 import { WeightEntryReviewComponent } from "./warehouse/weight-entry-review/weight-entry-review.component";
-import { GraphQLModule } from './graphql.module';
+import { GraphQLModule } from "./graphql.module";
 
 @NgModule({
   declarations: [
@@ -55,7 +55,8 @@ import { GraphQLModule } from './graphql.module';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule, GraphQLModule,
+    HttpClientModule,
+    GraphQLModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-day-selection',
-  templateUrl: './day-selection.component.html',
-  styleUrls: ['./day-selection.component.scss']
+  selector: "app-day-selection",
+  templateUrl: "./day-selection.component.html",
+  styleUrls: ["./day-selection.component.scss"],
 })
 export class DaySelectionComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
