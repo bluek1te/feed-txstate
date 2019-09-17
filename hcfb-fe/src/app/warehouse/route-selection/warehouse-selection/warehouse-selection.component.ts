@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-warehouse-selection',
-  templateUrl: './warehouse-selection.component.html',
-  styleUrls: ['./warehouse-selection.component.scss']
+  selector: "app-warehouse-selection",
+  templateUrl: "./warehouse-selection.component.html",
+  styleUrls: ["./warehouse-selection.component.scss"],
 })
 export class WarehouseSelectionComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

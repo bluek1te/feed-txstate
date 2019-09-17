@@ -1,11 +1,11 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { RescueService } from './rescue.service';
+import { RescueService } from "./rescue.service";
 
-describe('RescueService', () => {
+describe("RescueService", () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
+  it("should be created", () => {
     const service: RescueService = TestBed.get(RescueService);
     expect(service).toBeTruthy();
   });

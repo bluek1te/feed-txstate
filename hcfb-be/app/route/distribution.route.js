@@ -1,20 +1,18 @@
 module.exports = function(app) {
-    const distributions = require('../controller/distribution.controller.js');
+  const distributions = require("../controller/distribution.controller.js");
 
-    //Get a Distribution by delivery location
-    app.get('/api/distribution/:deliveryLocation', distributions.findByLocation);
-    
-    //Get all Distributions
-    app.get('/api/distribution', distributions.findAll);
+  //Get a Distribution by delivery location
+  app.get("/api/distribution/:deliveryLocation", distributions.findByLocation);
 
-    //Create a Distribution
-    app.post('/api/distribution', distributions.create);
+  //Get all Distributions
+  app.get("/api/distribution", distributions.findAll);
 
-    //Update a Distribution
-    app.put('/api/distribution', distributions.update);
+  //Create a Distribution
+  app.post("/api/distribution", distributions.create);
 
-    //Delete a Distribution
-    app.delete('/api/distribution/:deliveryLocation', distributions.delete);
+  //Update a Distribution
+  app.put("/api/distribution", distributions.update);
 
-
-}
+  //Delete a Distribution
+  app.delete("/api/distribution/:deliveryLocation", distributions.delete);
+};
