@@ -23,6 +23,7 @@ import { WarehouseSelectionComponent } from './warehouse/route-selection/warehou
 import { LocationSelectionComponent } from './warehouse/route-selection/location-selection/location-selection.component';
 import { WeightEntryComponent } from './warehouse/weight-entry/weight-entry.component';
 import { WeightEntryReviewComponent } from './warehouse/weight-entry-review/weight-entry-review.component';
+import { FoodItemComponent } from './rescue/food-item/food-item.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { WeightEntryReviewComponent } from './warehouse/weight-entry-review/weig
     LocationSelectionComponent,
     WeightEntryComponent,
     WeightEntryReviewComponent,
+    FoodItemComponent,
   ],
   imports: [
     BrowserModule,
