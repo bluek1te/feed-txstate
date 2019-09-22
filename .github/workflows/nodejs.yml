@@ -20,7 +20,11 @@ jobs:
       run: |
         npm ci --prefix /home/runner/work/feed-txstate/feed-txstate/hcfb-fe
         npm run build --if-present --prefix /home/runner/work/feed-txstate/feed-txstate/hcfb-fe
+    - name: angular lint
+      run: npm run lint --prefix /home/runner/work/feed-txstate/feed-txstate/hcfb-fe
     - name: express npm install and build
       run: |
         npm ci --prefix /home/runner/work/feed-txstate/feed-txstate/hcfb-be
         npm run build --if-present --prefix /home/runner/work/feed-txstate/feed-txstate/hcfb-be
+    - name: express lint
+      run: npm run lint --prefix /home/runner/work/feed-txstate/feed-txstate/hcfb-be
