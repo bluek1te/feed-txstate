@@ -136,6 +136,13 @@
     loop:
     - hcfb-be
     - hcfb-fe
+
+  # Deploy the frontend
+  # - name: build angular application
+  #   command: npm run build
+  #   args:
+  #     chdir: "{{ app_root }}/hcfb-fe"
+
 - name: Configuration and services
   hosts: production
   become: yes
