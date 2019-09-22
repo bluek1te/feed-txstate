@@ -66,6 +66,7 @@
     apt:
       name: apt-transport-https
       state: present
+      force_apt_get: yes
 
   - name: apt key for Node.js distribution
     apt_key:
@@ -83,11 +84,13 @@
     apt:
       update_cache: yes
       cache_valid_time: "{{ nodejs_source.changed |ternary(3600, 0) }}"
+      force_apt_get: yes
 
   - name: apt software
     apt:
       name: "{{ item }}"
       state: present
+      force_apt_get: yes
     loop:
     - nodejs
     - nginx
