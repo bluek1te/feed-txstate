@@ -11,7 +11,7 @@ Need help? Check out the [Ansible User Guide](https://docs.ansible.com/ansible/l
 Need to log on to the server?
 
 1. Create an SSH key and add it to your GitHub account if you haven't already done so. [GitHub Help](https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account) has documentation on how to do this for each operating system.
-2. Send a pull request to this repository that updates [the variables file](#) adding your GitHub username to the `usernames` array.
+2. Send a pull request to this repository that updates [the variables file](./vars.yml) adding your GitHub username to the `usernames` array.
 3. Get it merged and shipped to `master`.
 
 Now you'll be able to log in, authenticating with your SSH key:
