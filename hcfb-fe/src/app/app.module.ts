@@ -26,7 +26,6 @@ import { WarehouseSelectionComponent } from "./warehouse/route-selection/warehou
 import { LocationSelectionComponent } from "./warehouse/route-selection/location-selection/location-selection.component";
 import { WeightEntryComponent } from "./warehouse/weight-entry/weight-entry.component";
 import { WeightEntryReviewComponent } from "./warehouse/weight-entry-review/weight-entry-review.component";
-import { GraphQLModule } from "./graphql.module";
 
 @NgModule({
   declarations: [
@@ -56,7 +55,6 @@ import { GraphQLModule } from "./graphql.module";
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    GraphQLModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
