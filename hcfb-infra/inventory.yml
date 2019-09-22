@@ -1,0 +1,4 @@
+all:
+  hosts:
+    production:
+      ansible_host: 40.77.24.76

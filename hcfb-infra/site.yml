@@ -1,0 +1,219 @@
+---
+- name: Accounts and users
+  hosts: production
+  become: yes
+  vars_files:
+  - vars.yml
+  tasks:
+
+  # Accounts
+  - name: create administrator user groups
+    group:
+      name: "{{ item }}"
+      state: present
+    loop:
+    - feedadmin
+    - ultrasudo
+
+  - name: create administrator user accounts
+    user:
+      name: "{{ item }}"
+      state: present
+      groups: feedadmin, ultrasudo
+      password_lock: yes
+    loop: "{{ usernames }}"
+
+  - name: install user account SSH keys
+    authorized_key:
+      user: "{{ item }}"
+      key: https://github.com/{{ item }}.keys
+      state: present
+    loop: "{{ usernames }}"
+
+  - name: deployment user account
+    user:
+      name: deploy
+      groups: ultrasudo
+      state: present
+      shell: /bin/false
+      password_lock: yes
+
+  - name: deployment key
+    authorized_key:
+      user: deploy
+      key: "{{ deploy_pubkey }}"
+      state: present
+
+  - name: system user account
+    user:
+      name: feed
+      state: present
+      shell: /bin/false
+      create_home: no
+      password_lock: yes
+      system: yes
+
+  - name: sudoers configuration
+    lineinfile:
+      path: /etc/sudoers
+      line: '%ultrasudo ALL=(ALL) NOPASSWD:ALL'
+      regexp: ^%ultrasudo
+      state: present
+      validate: /usr/sbin/visudo -cf %s
+
+  # Platform
+  - name: apt dependencies
+    apt:
+      name: apt-transport-https
+      state: present
+      force_apt_get: yes
+
+  - name: apt key for Node.js distribution
+    apt_key:
+      url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+      state: present
+
+  - name: apt sources list for Node.js distribution
+    apt_repository:
+      repo: deb https://deb.nodesource.com/node_12.x bionic main
+      filename: nodesource
+      state: present
+    register: nodejs_source
+
+  - name: apt cache up to date
+    apt:
+      update_cache: yes
+      cache_valid_time: "{{ nodejs_source.changed |ternary(3600, 0) }}"
+      force_apt_get: yes
+
+  - name: apt software
+    apt:
+      name: "{{ item }}"
+      state: present
+      force_apt_get: yes
+    loop:
+    - nodejs
+    - nginx
+
+  - name: source directory
+    file:
+      path: "{{ app_root }}"
+      state: directory
+      owner: feed
+      group: feedadmin
+      mode: 0750
+
+- name: Feed application
+  hosts: production
+  vars_files:
+    - vars.yml
+  become: yes
+  become_user: feed
+  tasks:
+
+  # Fetch latest source
+
+  - name: hcfb source
+    git:
+      repo: https://github.com/bluek1te/feed-txstate.git
+      dest: "{{ app_root }}"
+      version: master
+    register: source
+
+  - name: npm configuration
+    template:
+      src: npmrc.j2
+      dest: "{{ app_root }}/{{ item }}/.npmrc"
+    loop:
+    - hcfb-be
+    - hcfb-fe
+
+  - name: install npm dependencies
+    npm:
+      path: "{{ app_root }}/{{ item }}"
+      state: present
+      production: yes
+      ci: yes
+    loop:
+    - hcfb-be
+    - hcfb-fe
+
+  # Deploy the frontend
+  # - name: build angular application
+  #   command: npm run build
+  #   args:
+  #     chdir: "{{ app_root }}/hcfb-fe"
+
+- name: Configuration and services
+  hosts: production
+  become: yes
+  vars_files:
+  - vars.yml
+  tasks:
+
+  - name: nginx ssl configuration
+    template:
+      src: nginx-ssl.conf.j2
+      dest: /etc/nginx/ssl.conf
+      owner: root
+      group: root
+      mode: 0644
+    register: nginx_ssl
+
+  - name: nginx site configuration
+    template:
+      src: nginx-{{ item }}.conf.j2
+      dest: /etc/nginx/sites-available/{{ item }}
+      owner: root
+      group: root
+      mode: 0644
+    loop:
+    - backend
+    - frontend
+    register: nginx_feed_sites
+
+  - name: remove default nginx site
+    file:
+      path: /etc/nginx/sites-enabled/default
+      state: absent
+    register: nginx_default_site
+
+  - name: activate nginx sites
+    file:
+      path: /etc/nginx/sites-enabled/{{ item }}
+      src: /etc/nginx/sites-available/{{ item }}
+      state: link
+    loop:
+    - backend
+    - frontend
+    register: nginx_activated_sites
+
+  - name: reload nginx configuration
+    service:
+      name: nginx
+      state: reloaded
+    when: >
+      nginx_ssl is changed or
+      nginx_feed_sites is changed or
+      nginx_default_site is changed or
+      nginx_activated_sites is changed
+
+  - name: hcfb-be systemd unit
+    template:
+      src: systemd-backend.unit.j2
+      dest: /etc/systemd/system/hcfb-be.service
+      owner: root
+      group: root
+      mode: 0644
+    register: backend_systemd_unit
+
+  - name: notice unit file changes
+    systemd:
+      daemon_reload: yes
+    when: backend_systemd_unit is changed
+
+  - name: hcfb-be service
+    service:
+      name: hcfb-be.service
+      state: "{{ (backend_systemd_unit is changed or source is changed) | ternary('restarted', 'started') }}"
+      enabled: yes
