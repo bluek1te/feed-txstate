@@ -1,0 +1,10 @@
+[Unit]
+Description=hcfb-be
+
+[Service]
+ExecStart=/usr/bin/node {{ app_root }}/hcfb-be/server.js
+Restart=always
+User=feed
+
+[Install]
+WantedBy=multi-user.target

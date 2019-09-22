@@ -118,6 +118,7 @@
       repo: https://github.com/bluek1te/feed-txstate.git
       dest: "{{ app_root }}"
       version: master
+    register: source
 
   - name: npm configuration
     template:
@@ -196,3 +197,23 @@
       nginx_feed_sites is changed or
       nginx_default_site is changed or
       nginx_activated_sites is changed
+
+  - name: hcfb-be systemd unit
+    template:
+      src: systemd-backend.unit.j2
+      dest: /etc/systemd/system/hcfb-be.service
+      owner: root
+      group: root
+      mode: 0644
+    register: backend_systemd_unit
+
+  - name: notice unit file changes
+    systemd:
+      daemon_reload: yes
+    when: backend_systemd_unit is changed
+
+  - name: hcfb-be service
+    service:
+      name: hcfb-be.service
+      state: "{{ (backend_systemd_unit is changed or source is changed) | ternary('restarted', 'started') }}"
+      enabled: yes
