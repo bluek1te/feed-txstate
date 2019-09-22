@@ -10,6 +10,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { MainComponent } from "./main/main.component";
 import { DistrictComponent } from "./rescue/district/district.component";
 import { LocationComponent } from "./rescue/location/location.component";
+import { DaySelectionComponent } from "./distribution/day-selection/day-selection.component";
+import { SiteSelectionComponent } from "./distribution/day-selection/site-selection/site-selection.component";
+import { LogComponent } from "./distribution/log/log.component";
 import { TemperatureComponent } from "./rescue/temperature/temperature.component";
 import { AdminMenuComponent } from "./admin/admin-menu/admin-menu.component";
 import { EditPickUpRoutesComponent } from "./admin/edit-pick-up-routes/edit-pick-up-routes.component";
@@ -30,6 +33,9 @@ import { WeightEntryReviewComponent } from "./warehouse/weight-entry-review/weig
     MainComponent,
     DistrictComponent,
     LocationComponent,
+    DaySelectionComponent,
+    SiteSelectionComponent,
+    LogComponent,
     TemperatureComponent,
     AdminMenuComponent,
     EditPickUpRoutesComponent,
@@ -44,7 +50,12 @@ import { WeightEntryReviewComponent } from "./warehouse/weight-entry-review/weig
     WeightEntryComponent,
     WeightEntryReviewComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
