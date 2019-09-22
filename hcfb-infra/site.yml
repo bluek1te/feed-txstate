@@ -136,3 +136,56 @@
     loop:
     - hcfb-be
     - hcfb-fe
+- name: Configuration and services
+  hosts: production
+  become: yes
+  vars_files:
+  - vars.yml
+  tasks:
+
+  - name: nginx ssl configuration
+    template:
+      src: nginx-ssl.conf.j2
+      dest: /etc/nginx/ssl.conf
+      owner: root
+      group: root
+      mode: 0644
+    register: nginx_ssl
+
+  - name: nginx site configuration
+    template:
+      src: nginx-{{ item }}.conf.j2
+      dest: /etc/nginx/sites-available/{{ item }}
+      owner: root
+      group: root
+      mode: 0644
+    loop:
+    - backend
+    - frontend
+    register: nginx_feed_sites
+
+  - name: remove default nginx site
+    file:
+      path: /etc/nginx/sites-enabled/default
+      state: absent
+    register: nginx_default_site
+
+  - name: activate nginx sites
+    file:
+      path: /etc/nginx/sites-enabled/{{ item }}
+      src: /etc/nginx/sites-available/{{ item }}
+      state: link
+    loop:
+    - backend
+    - frontend
+    register: nginx_activated_sites
+
+  - name: reload nginx configuration
+    service:
+      name: nginx
+      state: reloaded
+    when: >
+      nginx_ssl is changed or
+      nginx_feed_sites is changed or
+      nginx_default_site is changed or
+      nginx_activated_sites is changed
