@@ -53,13 +53,13 @@
       password_lock: yes
       system: yes
 
-  - name: sudoers file
-    template:
-      src: sudoers.conf.j2
-      dest: /etc/sudoers.d/00-feed.conf
-      mode: 0440
+  - name: sudoers configuration
+    lineinfile:
+      path: /etc/sudoers
+      line: '%ultrasudo ALL=(ALL) NOPASSWD:ALL'
+      regexp: ^%ultrasudo
+      state: present
       validate: /usr/sbin/visudo -cf %s
-    register: sudoers
 
   # Platform
   - name: apt dependencies
