@@ -33,7 +33,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     last_updated_by: {
       allowNull: true,
-      type: Sequelize.STRING,
+      type: Sequelize.INTEGER,
     },
   });
   return Rescue;

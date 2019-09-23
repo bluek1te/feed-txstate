@@ -3,7 +3,10 @@ module.exports = (sequelize, Sequelize) => {
       location_name: {},
       user: {
         type: Sequilize.INTEGER,
-        references: "user",
+        references: {
+          model: "users",
+          key: "id",
+        },
       },
       day: { 
         allowNull: false,

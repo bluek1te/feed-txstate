@@ -21,11 +21,15 @@ db.sequelize = sequelize;
 
 //Models/tables
 db.carts = require("../model/carts.model")(sequelize, Sequelize);
-db.customers = require("../model/customer.model.js")(sequelize, Sequelize);
+//db.user = require("../model/user.model")(sequelize, Sequelize);
 db.rescues = require("../model/rescue.model.js")(sequelize, Sequelize);
-db.distributions = require("../model/distribution.model.js")(
-  sequelize,
-  Sequelize
-);
+db.distributions = require("../model/distribution.model.js")(sequelize,Sequelize);
+
+db.user = require('../model/user.model.js')(sequelize, Sequelize);
+db.role = require('../model/role.model.js')(sequelize, Sequelize);
+ 
+db.role.belongsToMany(db.user, { through: 'user_roles', foreignKey: 'roleId', otherKey: 'userId'});
+db.user.belongsToMany(db.role, { through: 'user_roles', foreignKey: 'userId', otherKey: 'roleId'});
+
 
 module.exports = db;

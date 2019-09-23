@@ -14,6 +14,8 @@ const corsOptions = {
 app.use(cors(corsOptions))
  
 const db = require('./app/config/db.config.js');
+
+const Role = db.role;
   
 // force: true will drop the table if it already exists
 db.sequelize.sync({force: true}).then(() => {
@@ -21,10 +23,12 @@ db.sequelize.sync({force: true}).then(() => {
   initial();
 });
 
-require('./app/route/customer.route.js')(app);
 require('./app/route/rescue.route.js')(app);
 require('./app/route/distribution.route.js')(app);
- 
+require('./app/route/verify.route.js')(app);
+
+
+//require('./app/route/verifySignUp.route.js')(app);
 // Create a Server
 var server = app.listen(8080, function () {
  
@@ -35,6 +39,17 @@ var server = app.listen(8080, function () {
 })
  
 function initial(){
+
+  Role.create({
+    id: 1,
+    name: "USER"
+  });
+ 
+  Role.create({
+    id: 2,
+    name: "ADMIN"
+  });
+
  
   let rescues = [
     {
@@ -42,34 +57,22 @@ function initial(){
       store_number: "#708",
       district: "Buda",
       location: "14411 RR 12, Wimberely Square, TX 78676",
-      meat_time_pick_up: new Date(),
-      meat_temp_pick_up: "34",
-      meat_time_drop_off: new Date(),
-      meat_temp_drop_off: "39",
-      produce_time_pick_up: new Date(),
-      produce_temp_pick_up: "32",
-      produce_time_drop_off: new Date(),
-      produce_temp_drop_off: "38",
+      date: new Date(),
+      food_name: "Bread",
       time_pick_up: new Date(),
-      updated_at: new Date(),
-      last_updated_by: "Jerry"
+      time_drop_off: new Date(),
+      last_updated_by: 1,
     },
     {
       store_name: "Target",
       store_number: "#7453",
       district: "Hays County",
       location: "701 North Fredericksburg St, San Marcos, TX 78676",
-      meat_time_pick_up: new Date(),
-      meat_temp_pick_up: "39",
-      meat_time_drop_off: new Date(),
-      meat_temp_drop_off: "45",
-      produce_time_pick_up: new Date(),
-      produce_temp_pick_up: "32",
-      produce_time_drop_off: new Date(),
-      produce_temp_drop_off: "38",
+      date: new Date(),
+      food_name: "Meat",
       time_pick_up: new Date(),
-      updated_at: new Date(),
-      last_updated_by: "Jerry"
+      time_drop_off: new Date(),
+      last_updated_by: 1,
     }
   ]
   let distributions = [
@@ -86,10 +89,24 @@ function initial(){
       projectedNumberOfClients : 567
     }
   ]
+
+  let users = [
+    {
+      name : "Phillip",
+      username : "phpTran",
+      email: "phpTran@earthlink.net",
+      password: "powerProgrammer"
+    }
+  ]
  
   // // Init data -> save to MySQL
   const Rescue = db.rescues;
   const Distribution = db.distributions;
+  const User = db.user;
+
+  for(let i = 0; i < users.length; i++)
+    User.create(users[i]);
+
   for(let i = 0; i < rescues.length; i++)
     Rescue.create(rescues[i]);
   
