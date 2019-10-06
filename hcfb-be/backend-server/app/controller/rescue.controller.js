@@ -36,7 +36,7 @@ exports.findById = async (req, res) => {
 // Fetch all rescues
 exports.findAll = async (req, res) => {
   try{
-    const allRescues = await Rescue.findAll();
+    const rescues = await Rescue.findAll();
     res.json(rescues.sort(function(c1, c2) {return c1.id - c2.id;}));
   } catch(err) {
       console.log(err);

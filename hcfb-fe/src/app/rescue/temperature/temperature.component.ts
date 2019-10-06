@@ -27,10 +27,6 @@ export class TemperatureComponent implements OnInit {
     store_number: "121234321",
     district: "Buda",
     location: "2442 developer lane",
-    meat_temp_pick_up: 34,
-    meat_temp_drop_off: 45,
-    produce_temp_pick_up: 35,
-    produce_temp_drop_off: 37,
     time_pick_up: this.test,
     last_updated_by: " ",
   };

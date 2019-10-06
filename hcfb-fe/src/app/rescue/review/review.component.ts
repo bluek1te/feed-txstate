@@ -20,7 +20,7 @@ export class ReviewComponent implements OnInit {
   }
 
   submitReviewPage() {
-    this.rescue.time_pick_up = new Date();
+    this.rescue.date = new Date();
     this.rescueSub = this.rescueSource.submitForm(this.rescue).subscribe(
       res => {
         console.log("posted");
